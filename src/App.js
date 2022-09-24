@@ -4,6 +4,7 @@ function App() {
     <div>
 
 
+      <h2>firebase deploy</h2>
 
     </div>
   );
