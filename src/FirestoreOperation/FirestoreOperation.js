@@ -1,7 +1,7 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from '@firebase/firestore';
 import { AiFillCaretDown, AiFillDelete } from 'react-icons/ai'
 import { AiFillCaretUp } from 'react-icons/ai'
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { database } from '../Firebase/Firebase.init';
 
 const FireStoreOperation = () => {
