@@ -6,11 +6,9 @@ import { database } from '../Firebase/Firebase.init';
 
 const FireStoreOperation = () => {
 
-    const addPlayers = useRef()
+    const addPlayers = useRef();
     const [players, setPlayers] = useState([]);
     const playersRef = collection(database, "players");
-
-
 
     getDocs(playersRef)
         .then((allPlayers) => {
@@ -25,18 +23,24 @@ const FireStoreOperation = () => {
         })
         .catch(err => {
             console.log(err.message)
-        })
+        });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         const name = addPlayers.current.value;
         await addDoc(playersRef, { name: name });
         addPlayers.current.value = ''
-    }
+    };
     const handleDelete = async (id) => {
         const playerDoc = doc(database, "players", id);
         await deleteDoc(playerDoc)
-    }
+    };
+    const handleSortingUp = async (id) => {
+
+    };
+    const handleSortingDown = async (id) => {
+
+    };
 
 
 
@@ -50,8 +54,8 @@ const FireStoreOperation = () => {
                         <div className='w-1/4 py-3 px-4 rounded-lg mt-3 flex justify-between items-center'>
                             <h2 className='text-2xl'>{player.name}</h2>
                             <div className='flex items-center gap-6 '>
-                                <button><AiFillCaretUp className='text-teal-900' /></button>
-                                <button><AiFillCaretDown className='text-teal-900' /></button>
+                                <button onClick={() => handleSortingUp(player.id)}><AiFillCaretUp className='text-teal-900' /></button>
+                                <button onClick={() => handleSortingDown(player.id)}><AiFillCaretDown className='text-teal-900' /></button>
                                 <button onClick={() => handleDelete(player.id)}><AiFillDelete className="text-red-500" /></button>
                             </div>
                         </div>
