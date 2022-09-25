@@ -10,22 +10,28 @@ const FireStoreOperation = () => {
     const [players, setPlayers] = useState([]);
     const playersRef = collection(database, "players");
 
-    useEffect(() => {
-        const getPlayers = async () => {
-            const data = await getDocs(playersRef);
-            setPlayers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-        }
-        getPlayers()
-    }, [playersRef]);
+    // useEffect(() => {
+    //     const getPlayers = async () => {
+    //         const data = await getDocs(playersRef);
+    //         setPlayers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+    //     }
+    //     getPlayers()
+    // }, [playersRef]);
 
-    // getDocs(playersRef)
-    //     .then((allPlayers) => {
-    //         let players = []
-    //         allPlayers.docs.forEach((doc) => {
-    //             players.push({ ...doc.data(), id: doc.id })
-    //         })
-    //         setPlayers(players);
-    //     })
+    getDocs(playersRef)
+        .then((allPlayers) => {
+            let players = []
+            allPlayers.docs.forEach((doc) => {
+
+                players.push({
+                    ...doc.data(), id: doc.id
+                })
+            })
+            setPlayers(players)
+        })
+        .catch(err => {
+            console.log(err.message)
+        })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
