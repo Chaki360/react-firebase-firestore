@@ -3,6 +3,7 @@ import { AiFillCaretDown, AiFillDelete } from 'react-icons/ai'
 import { AiFillCaretUp } from 'react-icons/ai'
 import React, { useRef, useState } from 'react';
 import { database } from '../Firebase/Firebase.init';
+import { toast } from 'react-toastify';
 
 const FireStoreOperation = () => {
 
@@ -30,10 +31,12 @@ const FireStoreOperation = () => {
         const name = addPlayers.current.value;
         await addDoc(playersRef, { name: name });
         addPlayers.current.value = ''
+        toast.success("Successfully Added")
     };
     const handleDelete = async (id) => {
         const playerDoc = doc(database, "players", id);
         await deleteDoc(playerDoc)
+        toast.error("Deleted Successfully")
     };
     const handleSortingUp = async (id) => {
 
