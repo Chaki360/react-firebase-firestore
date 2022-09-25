@@ -1,7 +1,7 @@
 import { addDoc, collection, deleteDoc, doc, getDocs } from '@firebase/firestore';
 import { AiFillCaretDown, AiFillDelete } from 'react-icons/ai'
 import { AiFillCaretUp } from 'react-icons/ai'
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { database } from '../Firebase/Firebase.init';
 
 const FireStoreOperation = () => {
@@ -10,16 +10,22 @@ const FireStoreOperation = () => {
     const [players, setPlayers] = useState([]);
     const playersRef = collection(database, "players");
 
+    useEffect(() => {
+        const getPlayers = async () => {
+            const data = await getDocs(playersRef);
+            setPlayers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+        }
+        getPlayers()
+    }, [playersRef]);
 
-
-    getDocs(playersRef)
-        .then((allPlayers) => {
-            let players = []
-            allPlayers.docs.forEach((doc) => {
-                players.push({ ...doc.data(), id: doc.id })
-            })
-            setPlayers(players);
-        })
+    // getDocs(playersRef)
+    //     .then((allPlayers) => {
+    //         let players = []
+    //         allPlayers.docs.forEach((doc) => {
+    //             players.push({ ...doc.data(), id: doc.id })
+    //         })
+    //         setPlayers(players);
+    //     })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
