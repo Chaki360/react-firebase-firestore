@@ -10,13 +10,7 @@ const FireStoreOperation = () => {
     const [players, setPlayers] = useState([]);
     const playersRef = collection(database, "players");
 
-    // useEffect(() => {
-    //     const getPlayers = async () => {
-    //         const data = await getDocs(playersRef);
-    //         setPlayers(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-    //     }
-    //     getPlayers()
-    // }, [playersRef]);
+
 
     getDocs(playersRef)
         .then((allPlayers) => {
