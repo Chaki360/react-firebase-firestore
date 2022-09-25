@@ -1,10 +1,11 @@
+import FireStoreOperation from "./FirestoreOperation/FirestoreOperation";
 
 function App() {
   return (
     <div>
 
 
-      <h2>firebase deploy</h2>
+      <FireStoreOperation />
 
     </div>
   );
