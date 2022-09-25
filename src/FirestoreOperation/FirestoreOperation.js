@@ -54,9 +54,9 @@ const FireStoreOperation = () => {
             }
             <div className=' flex justify-center mt-3'>
                 <div className='w-1/4'>
-                    <form className='bg-blue-200 py-2 px-4 rounded-lg flex justify-between' onSubmit={handleSubmit}>
+                    <form className='bg-slate-200 py-2 px-4 rounded-lg flex justify-between' onSubmit={handleSubmit}>
                         <input className='p-2 border rounded-lg w-full border-teal-900' type="text" ref={addPlayers} />
-                        <input className='py-2 px-4 bg-teal-900 text-white rounded-lg hover:bg-blue-700 transition-all cursor-pointer ml-3' type="submit" value="Add" />
+                        <input className='py-2 px-4 bg-teal-900 text-white rounded-lg hover:bg-teal-700 transition-all cursor-pointer ml-3' type="submit" value="Add" />
                     </form>
                 </div>
             </div>
