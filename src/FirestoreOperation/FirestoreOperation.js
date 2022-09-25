@@ -24,6 +24,8 @@ const FireStoreOperation = () => {
         })
         .catch(err => {
             console.log(err.message)
+            const errorMessage = err.message;
+            toast.error(errorMessage);
         });
 
     const handleSubmit = async (e) => {
